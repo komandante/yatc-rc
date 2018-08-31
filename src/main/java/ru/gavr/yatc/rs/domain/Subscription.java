@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * Created by gavr on 31.08.2018
  */
@@ -11,5 +13,6 @@ import lombok.ToString;
 @Getter
 @Setter
 public class Subscription {
+    @NotBlank
     private String email;
 }

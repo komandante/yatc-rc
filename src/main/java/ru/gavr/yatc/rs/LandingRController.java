@@ -19,11 +19,11 @@ public class LandingRController {
     Logger log = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/application", method = RequestMethod.POST)
-    public void application(@RequestBody Application application) {
+    public void application(@RequestBody @Valid Application application) {
         log.info(application.toString());
     }
     @RequestMapping(value = "/subscription", method = RequestMethod.POST)
-    public void subscription(@RequestBody Subscription subscription) {
+    public void subscription(@RequestBody @Valid Subscription subscription) {
         log.info(subscription.toString());
     }
 }
