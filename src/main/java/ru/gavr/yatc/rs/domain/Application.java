@@ -12,6 +12,8 @@ import javax.validation.constraints.NotBlank;
 @ToString @Getter @Setter
 public class Application {
     @NotBlank
+    private String site;
+    @NotBlank
     private String name;
     @NotBlank
     private String phone;

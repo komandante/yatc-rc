@@ -14,5 +14,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class Subscription {
     @NotBlank
+    private String site;
+    @NotBlank
     private String email;
 }
