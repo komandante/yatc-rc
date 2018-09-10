@@ -6,14 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.gavr.yatc.rs.domain.Application;
+import ru.gavr.yatc.rs.domain.Response;
 import ru.gavr.yatc.rs.domain.Subscription;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 /**
  * Created by gavr on 31.08.2018
@@ -31,11 +30,13 @@ public class LandingRController {
     public JavaMailSender emailSender;
 
 
-    @RequestMapping(value = "/application", method = RequestMethod.POST)
-    public void application(@RequestBody @Valid Application application) {
-        log.debug(application.toString());
+    @RequestMapping(value = "/application", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @ResponseBody
+    @CrossOrigin
+    public Response application(@RequestParam Map<String, String> body) {
+        log.debug(body.toString());
 
-        SimpleMailMessage message = new SimpleMailMessage();
+    /*    SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(yMailTo.split(","));
         message.setFrom(yMailFrom);
         message.setSubject("Заявка с " + application.getSite());
@@ -43,18 +44,18 @@ public class LandingRController {
         "Телефон: " + application.getPhone()  + "\n" +
         "Email: " + application.getEmail()  + "\n" +
         "Комментарий: " + application.getComment());
-        emailSender.send(message);
-
+        emailSender.send(message);*/
+        return new Response("OK");
     }
     @RequestMapping(value = "/subscription", method = RequestMethod.POST)
     public void subscription(@RequestBody @Valid Subscription subscription) {
         log.debug(subscription.toString());
 
-        SimpleMailMessage message = new SimpleMailMessage();
+       /* SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(yMailTo.split(","));
         message.setFrom(yMailFrom);
         message.setSubject("Подписка с  " + subscription.getSite());
         message.setText("Email: " + subscription.getEmail());
-        emailSender.send(message);
+        emailSender.send(message);*/
     }
 }
